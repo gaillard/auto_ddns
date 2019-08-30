@@ -138,6 +138,9 @@ func doCircle() {
 			}
 			fmt.Printf("Read dns data from namesilo succ, recordid:%s, current ip:%s, outter ip:%s\n",
 				data.RecordId, data.CurrentIP, data.OutterIP)
+			if data.CurrentIP == data.OutterIP {
+				break
+			}
 			err = UpdateDNSData(*domain, *subDomain, data.RecordId, *key, data.OutterIP, *ttl)
 			if err != nil {
 				fmt.Printf("Update dns data fail, err:%v, domain:%s, sub:%s\n", err, *domain, *subDomain)
